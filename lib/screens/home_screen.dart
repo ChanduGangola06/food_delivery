@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/components/category_list.dart';
 import 'package:food_delivery/components/custom_app_bar.dart';
-import 'package:food_delivery/models/food_model.dart';
+import 'package:food_delivery/components/custom_bar.dart';
+import 'package:food_delivery/components/enum.dart';
+import 'package:food_delivery/components/food_product.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,6 +11,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const CustomBottomBar(
+        selectMenu: MenuState.home,
+      ),
       body: SafeArea(
         child: ListView(
           children: [
@@ -47,30 +52,11 @@ class HomeScreen extends StatelessWidget {
                     image: Image.asset("assets/images/🌭.png"),
                     color: Colors.white,
                   ),
-                  Container(
-                    padding: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      children: [
-                        Image.asset(foodProducts[1].image),
-                        Text(
-                          foodProducts[1].title,
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        Row(
-                          children: [
-                            Text(foodProducts[1].title),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
+            const SizedBox(height: 10),
+            const FoodCard(),
           ],
         ),
       ),
