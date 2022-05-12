@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/components/detail_screen.dart';
+import 'package:food_delivery/detail_screen/detail_screen.dart';
 import 'package:food_delivery/models/food_model.dart';
 
 class FoodCard extends StatelessWidget {
@@ -12,22 +12,29 @@ class FoodCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: GridView.builder(
-          shrinkWrap: true,
-          physics: ScrollPhysics(),
-          itemCount: foodProducts.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.75,
-            mainAxisSpacing: 10.0,
-            crossAxisSpacing: 10.0,
-          ),
-          itemBuilder: (context, index) => FoodProduct(
-                press: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => DetailScreen()));
-                },
-                product: foodProducts[index],
-              )),
+        shrinkWrap: true,
+        physics: ScrollPhysics(),
+        itemCount: foodProducts.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.75,
+          mainAxisSpacing: 10.0,
+          crossAxisSpacing: 10.0,
+        ),
+        itemBuilder: (context, index) => FoodProduct(
+          press: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailScreen(
+                  foodDetail: foodProducts[index],
+                ),
+              ),
+            );
+          },
+          product: foodProducts[index],
+        ),
+      ),
     );
   }
 }
